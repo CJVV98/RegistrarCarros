@@ -8,6 +8,7 @@ package com.udec.datatable2.controler;
 import com.udec.datatable2.utilitarios.Carros;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -32,7 +33,7 @@ public class RegistroCarro implements Serializable{
     private List<String> marcas;
     private List<Carros> carros;
     private List<Carros> filtros;
-    private int modelo;
+    private Date modelo;
     /**
      * Constructor de la clase, se inicializa las listas
      * y se crea la lista de marcas
@@ -94,14 +95,14 @@ public class RegistroCarro implements Serializable{
      * Metodo para obtener el modelo(año) del carro
      * @return año de lanzamiento del carro
      */
-    public int getModelo() {
+    public Date getModelo() {
         return modelo;
     }
     /**
      * Metodo para asignar el año del modelo
      * @param modelo del carro
      */
-    public void setModelo(int modelo) {
+    public void setModelo(Date modelo) {
         this.modelo = modelo;
     }
     /**
@@ -137,6 +138,8 @@ public class RegistroCarro implements Serializable{
      */
     public void llenarTabla(){
         carros.add(new Carros(nombre,marca,modelo));
+        nombre="";
+        modelo=null;
                 
     }
 

@@ -7,24 +7,32 @@
     <h:head>
         <title>Registro de Carros</title>
     </h:head>
+    
     <h:body>
           <h:form>
-              <p:panelGrid columns="2">
+              <p:panelGrid columns="3">
                 <h:outputText value="NOMBRE"/>
-                <p:inputText value="#{registroCarro.nombre}"/>                      
+                <p:inputText id="nombre" value="#{registroCarro.nombre}" required="true" validatorMessage="Nombre invalido" requiredMessage="Campo obligatorio">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+                <p:message for="nombre" display="icon" />
 
                 <h:outputText value="MARCA"/>
-                <p:selectOneMenu  value="#{registroCarro.marca}" style="width:125px">
+                <p:selectOneMenu  id="marca" value="#{registroCarro.marca}" style="width:125px">
                     <f:selectItems  value="#{registroCarro.marcas}"/>
                 </p:selectOneMenu>
-
+                <p:message for="marca" display="icon" />
+                
                 <h:outputText value="MODELO"/>
-                <p:spinner id="minMax" value="#{registroCarro.modelo}" min="1990" max="2019" />      
-                 
+                <p:datePicker id="month" maxlength="4" view="month" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" value="#{registroCarro.modelo}" pattern="yyyy" yearNavigator="true" yearRange="2000:2030"  requiredMessage="Ingrese año"> 
+                    <f:validateLength minimum="4"/>
+                </p:datePicker>
+                <p:message for="month" display="icon"  />
+ 
               </p:panelGrid>
-              <a href="registroCarro.xhtml"></a>
+        
             <p:growl id="growl" life="2000" />
-            <p:commandButton value="Insertar" update="tabla" actionListener="#{registroCarro.llenarTabla()}"  process="@form"
+            <p:commandButton value="Insertar" update="@form" actionListener="#{registroCarro.llenarTabla()}"  process="@form"
                              ajax="true" icon="ui-icon-plus" style="background-color: cadetblue;"/>
            
             <p:panel id="tabla">
@@ -45,7 +53,8 @@
                         <h:outputText value="#{carro.marca}" />
                         </p:column>
 
-                    <p:column headerText="Modelo" filterBy="#{carro.modelo}" filterMatchMode="lte" >
+                    <p:column headerText="Modelo" filterBy="#{carro.modelo}"  filterMatchMode="lte" >
+                        
                              <f:facet name="filter">
                                 <p:spinner onchange="PF('carros').filter()" min="1999" max="2019" >
                                     <f:converter converterId="javax.faces.Integer" />
