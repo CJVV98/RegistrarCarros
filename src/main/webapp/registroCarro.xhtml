@@ -10,10 +10,13 @@
     
     <h:body>
           <h:form>
-              <p:panelGrid columns="3">
+              <center><h:outputText value="REGISTRO DE VEHICULOS" style="font-family: Arial,sans-serif;font-size: 1.1em"/></center>
+              <br></br>
+              <p:panelGrid columns="3"  layout="grid">
+             
                 <h:outputText value="NOMBRE"/>
                 <p:inputText id="nombre" value="#{registroCarro.nombre}" required="true" validatorMessage="Nombre invalido" requiredMessage="Campo obligatorio">
-                    <f:validateLength minimum="2" />
+                    <f:validateLength minimum="3" />
                 </p:inputText>
                 <p:message for="nombre" display="icon" />
 
@@ -24,17 +27,17 @@
                 <p:message for="marca" display="icon" />
                 
                 <h:outputText value="MODELO"/>
-                <p:datePicker id="month" maxlength="4" view="month" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" value="#{registroCarro.modelo}" pattern="yyyy" yearNavigator="true" yearRange="2000:2030"  requiredMessage="Ingrese año"> 
+                <p:datePicker id="month" maxlength="4" view="month" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" value="#{registroCarro.modelo}" pattern="yyyy" yearNavigator="true" yearRange="1990:2019"  requiredMessage="Ingrese año"> 
                     <f:validateLength minimum="4"/>
                 </p:datePicker>
                 <p:message for="month" display="icon"  />
  
               </p:panelGrid>
-        
+              
             <p:growl id="growl" life="2000" />
             <p:commandButton value="Insertar" update="@form" actionListener="#{registroCarro.llenarTabla()}"  process="@form"
                              ajax="true" icon="ui-icon-plus" style="background-color: cadetblue;"/>
-           
+            <br></br><br></br>
             <p:panel id="tabla">
                 <p:dataTable rendered="#{not empty registroCarro.carros}" id="Datatabla" var="carro" widgetVar="carros" value="#{registroCarro.carros}"   paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
