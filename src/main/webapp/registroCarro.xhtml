@@ -12,20 +12,22 @@
           <h:form>
               <center><h:outputText value="REGISTRO DE VEHICULOS" style="font-family: Arial,sans-serif;font-size: 1.1em"/></center>
               <br></br>
-              <p:panelGrid columns="3"  layout="grid">
+              <p:panelGrid columns="4" layout="grid">
              
                 <h:outputText value="NOMBRE"/>
                 <p:inputText id="nombre" value="#{registroCarro.nombre}" required="true" validatorMessage="Nombre invalido" requiredMessage="Campo obligatorio">
                     <f:validateLength minimum="3" />
                 </p:inputText>
                 <p:message for="nombre" display="icon" />
+                <br></br>
 
                 <h:outputText value="MARCA"/>
                 <p:selectOneMenu  id="marca" value="#{registroCarro.marca}" style="width:125px">
                     <f:selectItems  value="#{registroCarro.marcas}"/>
                 </p:selectOneMenu>
                 <p:message for="marca" display="icon" />
-                
+                <br></br>
+
                 <h:outputText value="MODELO"/>
                 <p:datePicker id="month" maxlength="4" view="month" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" required="true" value="#{registroCarro.modelo}" pattern="yyyy" yearNavigator="true" yearRange="1990:2019"  requiredMessage="Ingrese año"> 
                     <f:validateLength minimum="4"/>
