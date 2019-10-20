@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * Clase de tipo carro
- * @author Corin V
+ * @author Corin V, Alisson Celeita
  */
 public class Carros {
     /**

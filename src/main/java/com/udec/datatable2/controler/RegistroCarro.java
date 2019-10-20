@@ -16,7 +16,7 @@ import javax.faces.view.ViewScoped;
 
 /**
  * Clase encargada de registrar los carros
- * @author Corin V
+ * @author Corin V, Alisson Celeita
  */
 @Named(value = "registroCarro")
 @ViewScoped
